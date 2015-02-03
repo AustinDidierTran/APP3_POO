@@ -1,0 +1,13 @@
+Pour faire des modifications
+
+git add -A
+git commit -m (message)
+git push
+
+Pour aller chercher des modifications
+
+git pull
+
+En cas de probleme
+
+git status
