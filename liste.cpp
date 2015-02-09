@@ -13,7 +13,7 @@ Liste::Liste(){
     back = NULL;
     head = NULL;
 }
-void Liste::add(PlatChoisi t){
+void Liste::add(PlatChoisi* t){
 
     Node* n;
 	n->value = t;
@@ -29,9 +29,9 @@ void Liste::add(PlatChoisi t){
 	}
 	size++;
     
-    //sortByCode();
+    sortByCode();
 }
-void Liste::addAt(PlatChoisi t, int indice){
+void Liste::addAt(PlatChoisi* t, int indice){
     
     Node* n;
     n->value = t;
@@ -55,7 +55,7 @@ void Liste::addAt(PlatChoisi t, int indice){
 }
 int Liste::findCode(int n){
     for(int i=0; i<size; i++)
-        if(getAt(i).get_code() == n)
+        if(getAt(i)->get_code() == n)
             return i;
     
     return -1;
@@ -74,7 +74,7 @@ int Liste::getAtCode(int n)
 {
     for(int i=0; i<size; i++)
     {
-        if(get(i)->value.getCode() == n)
+        if(get(i)->value->getCode() == n)
             return i;
     }
     
@@ -85,10 +85,10 @@ void Liste::sortByCode(){
     
     for(int i=0; i<size-1; i++)
         for(int j=0; j<size; j++)
-            if(get(i)->value.getCode() > get(j)->value.getCode())
+            if(get(i)->value->getCode() > get(j)->value->getCode())
                 swap(get(i), get(j));
 }
-PlatChoisi Liste::getAt(int n){
+PlatChoisi* Liste::getAt(int n){
 	Node* currentNode = get(n);
 	return currentNode->value;
 }

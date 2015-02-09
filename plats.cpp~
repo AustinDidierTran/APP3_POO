@@ -16,16 +16,13 @@
 
 #include "plats.h"
 
-void PlatAuMenu::afficher (ostream & sortie) const        ///< fichier sortie
+void PlatAuMenu::afficher () const        ///< fichier sortie
 {
    if (TRACE_Plats)
-      sortie << "Liste_plat::afficher" <<  ", ";
-   sortie << "code = " << code << ", ";
-   sortie << "prix = " << prix << ", ";
-   sortie << " (" << desc << " )" << endl;
-   cout << "code = " << code << ", ";
-   cout << "prix = " << prix << ", ";
-   cout << " (" << desc << " )" << endl;
+      cout << "Liste_plat::afficher" << ",";
+   cout   << "code = " << code << ", ";
+   cout   << "prix = " << prix << ", ";
+   cout   << " (" << desc << " )" << endl;
    return;
 }
 
@@ -38,6 +35,9 @@ void PlatAuMenu::afficher_sommaire (ostream & os) const        ///< fichier sort
    os << setprecision(2);
    os << " code  = " << code << ", ";
    os << " prix  = " << prix << ", "<< endl;
+   cout   << "code = " << code << ", ";
+   cout   << "prix = " << prix << ", ";
+   cout   << " (" << desc << " )" << endl;
    return;
 }
 

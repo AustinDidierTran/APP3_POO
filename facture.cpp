@@ -43,14 +43,14 @@ void Facture::init(string description, string date){
 void Facture::miseAJourPrix(){
 	soustotal = 0;
 	for(int i=0; i<plats.getSize(); i++)
-		soustotal += (plats.get(i)->value.get_prix() * (double)(plats.get(i)->value.get_quantite()));
+		soustotal += (plats.get(i)->value->get_prix() * (double)(plats.get(i)->value->get_quantite()));
 	tps = 0.05 * soustotal;
 	tvq = 0.09975 * soustotal;
 	total = 1.14975 * soustotal;
 }
 void Facture::ajouterPlat(int code, string description, double prix, int quantite){
 	
-	PlatChoisi plat(code, description, prix, quantite);
+	PlatChoisi* plat = new PlatChoisi(code, description, prix, quantite);
 	plats.add(plat);
 	miseAJourPrix();
 }
@@ -62,7 +62,7 @@ void Facture::afficher(){
 
 	for(int i=0; i<plats.getSize(); i++){
 	
-		plats.get(i)->value.afficher();
+		plats.get(i)->value->afficher();
 	
 	}
 	cout << "sous-total " << soustotal << endl

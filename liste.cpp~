@@ -1,6 +1,5 @@
 #include "liste.h"
 
-
 void Node::operator=(Node* n)
 {
     value = n->value;
@@ -13,19 +12,15 @@ Liste::Liste(){
     back = NULL;
     head = NULL;
 }
-void Liste::add(PlatChoisi t){
+void Liste::add(PlatChoisi* t){
 
-    Node* n;
-	n->value = t;
+   Node* n;
+   n->value = t;
 
+	cout << t->get_code();
 	if(!size){
 		head = n;
 		back = n;
-	}
-	else if(size == 1){
-		head = n;
-		back->previous = head;
-		head->next = back;
 	}
 	else{
 		head->previous = n;
@@ -34,9 +29,9 @@ void Liste::add(PlatChoisi t){
 	}
 	size++;
     
-    //sortByCode();
+    //	sortByCode();
 }
-void Liste::addAt(PlatChoisi t, int indice){
+void Liste::addAt(PlatChoisi* t, int indice){
     
     Node* n;
     n->value = t;
@@ -60,7 +55,7 @@ void Liste::addAt(PlatChoisi t, int indice){
 }
 int Liste::findCode(int n){
     for(int i=0; i<size; i++)
-        if(getAt(i).get_code() == n)
+        if(getAt(i)->get_code() == n)
             return i;
     
     return -1;
@@ -79,7 +74,7 @@ int Liste::getAtCode(int n)
 {
     for(int i=0; i<size; i++)
     {
-        if(get(i)->value.getCode() == n)
+        if(get(i)->value->get_code() == n)
             return i;
     }
     
@@ -90,10 +85,10 @@ void Liste::sortByCode(){
     
     for(int i=0; i<size-1; i++)
         for(int j=0; j<size; j++)
-            if(get(i)->value.getCode() > get(j)->value.getCode())
+            if(get(i)->value->get_code() > get(j)->value->get_code())
                 swap(get(i), get(j));
 }
-PlatChoisi Liste::getAt(int n){
+PlatChoisi* Liste::getAt(int n){
 	Node* currentNode = get(n);
 	return currentNode->value;
 }
@@ -137,7 +132,8 @@ void Liste::swap(Node* n1, Node* n2){
     n2 = temp;
     
 }
-
-
-
+void Liste::afficherTout(){
+	for(int i=0; i<size; i++)
+	   get(i)->value->afficher();
+}
 

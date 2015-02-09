@@ -19,65 +19,77 @@
 Facture::Facture(){
 	description = "";
 	date = "";
-	plats = "";
-	ouverte = true;
-	payer = false;
-	soustotal = 0;
-	tps = 0;
-	tvq = 0;
-	total = 0;
-}
-void Facture::init(){
-	cout << "Quel est la description?" << endl;
-	cin >> description;
-	cout << "Quel est la date?" << endl;
-	cin >> date;
 	plats.deleteAll();
 	ouverte = true;
-	payer = false;
+	paid = false;
 	soustotal = 0;
 	tps = 0;
 	tvq = 0;
 	total = 0;
+    indicePlatCourant = 0;
+}
+void Facture::init(string description, string date){
+    this->description = description;
+    this->date = date;
+	ouverte = true;
+	paid = false;
+	soustotal = 0;
+	tps = 0;
+	tvq = 0;
+	total = 0;
+    indicePlatCourant = 0;
 }
 void Facture::miseAJourPrix(){
 	soustotal = 0;
-	for(int i=0; i<plats.size(); i++)
-		soustotal += (plats.get(i).get_prix * plats.get(i).get_quantite());
+	for(int i=0; i<plats.getSize(); i++)
+		soustotal += (plats.get(i)->value->get_prix() * (double)(plats.get(i)->value->get_quantite()));
 	tps = 0.05 * soustotal;
 	tvq = 0.09975 * soustotal;
 	total = 1.14975 * soustotal;
 }
 void Facture::ajouterPlat(int code, string description, double prix, int quantite){
-	
-	PlatChoisi plat(code, description, prix, quantite);
-	plats.ajouter(plat);
+	cout << "Test";
+	PlatChoisi* plat = new PlatChoisi(code, description, prix, quantite);
+	plats.add(plat);
 	miseAJourPrix();
 }
+
 void Facture::afficher(){
-	
 	cout << "Facture ----------------------------------------------------" << endl
 		<< date << endl
 		<< description << endl;
 
-	for(int i=0; i<plats.size(); i++){
+	plats.afficherTout();
 	
-		plats.get(i).afficher();
-	
-	}
 	cout << "sous-total " << soustotal << endl
 		<< "tps " << tps << endl
 		<< "tvq " << tvq << endl
 		<< "-------" << endl
 		<< "total " << total << endl;
 
-	if(payer)
+	if(paid)
 		cout << "Paiement recu " << endl;
 }
-void Facture::modifier();
-void Facture::fermer();
-void Facture::reouvrir();
-void Facture::payer();	
+void Facture::modifier(){
 
+}
+void Facture::fermer(){
+	ouverte = false;
+}
+bool Facture::isOuverte(){
+    return ouverte;
+}
+void Facture::reouvrir(){
+	ouverte = true;
+}
+void Facture::pay(){
+    if(!isOuverte())
+        paid = true;
+    else
+        cout << "La facture doit être fermee pour être payee\n";
+}
+void Facture::retirerPlatAt(int indice){
+    plats.deleteAt(indice);
+}
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------

@@ -49,8 +49,7 @@ public:
    Menu();
    virtual ~Menu();
    void afficher (ostream & sortie) const;          ///< Afficher le contenu du menu
-   void ajoute(PlatAuMenu); ///< Ajouter un plat au menu
-   void ajoute(int, string, double);
+   void ajoute(int, string, double); ///< Ajouter un plat au menu
    void afficher_courant (ostream & sortie) const;  ///< Afficher le Plat courant
    bool positionne_code(int code);                  ///< Rechercher un code et en faire le plat courant
    PlatAuMenu *get_courant();                       ///< Obtenir un pointeur vers le plat courant

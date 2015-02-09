@@ -113,31 +113,10 @@ void Menu::afficher_courant (ostream & os) const               ///< Afficher
    \param  le_plat 
    \return void
 */
-void Menu::ajoute(PlatAuMenu ajout)              ///< Ajoute un plat au Menu
-{
-    if (TRACE_Menu) cout << "Menu::ajoute, courant = " << courant << endl;
-
-    int i = 0;
-    bool place = false;
-	
-	while ((i < NBRE_PLATS_MAX) && (!place))
-    {
-        if (plat[i]== NULL)
-        {
-            plat[i] = &ajout;
-            courant = i;
-            place = true;
-        }
-        i++;
-    }
-    if (!place)
-        cout << "Menu::ajoute - erreur debordement " << endl;
-   return;
-}
 void Menu::ajoute(int code, string desc, double prix)              ///< Ajoute un plat au Menu
 {
     if (TRACE_Menu) cout << "Menu::ajoute, courant = " << courant << endl;
-
+	
     int i = 0;
     bool place = false;
 	
@@ -148,6 +127,7 @@ void Menu::ajoute(int code, string desc, double prix)              ///< Ajoute u
             plat[i] = new PlatAuMenu(code, desc, prix);
             courant = i;
             place = true;
+	    
         }
         i++;
     }
@@ -155,6 +135,7 @@ void Menu::ajoute(int code, string desc, double prix)              ///< Ajoute u
         cout << "Menu::ajoute - erreur debordement " << endl;
    return;
 }
+
 void Menu::efface_courant()
 {
     if (TRACE_Menu)

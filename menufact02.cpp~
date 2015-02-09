@@ -26,21 +26,23 @@ int main(){
     PlatAuMenu p3(53, "Pizza à la viande jumbo quatre étage (bar à salade inclus)", 99.99);
     
     //Ajout de 3 plats au menu
-    m.ajoute(30, "Salade", 9.99);
+    m.ajoute(53, "Salade", 9.99);
     m.ajoute(40, "Pomme OGM", 0.99);
-    m.ajoute(50, "Pizza a la viande jumbo quatre etages (bar a salade inclus", 99.99);
+    m.ajoute(50, "Pizza a la viande", 99.99);
     
-    //Affichage du menu
-    m.afficher(fichier_sortie);
+	//Affichage du menu
+   // m.afficher(fichier_sortie);
     
     //initialisation de la facture
+
     f.init("Facture test de validation", sladate);
-    
+	    
+
     //Ajout des trois plats au menu avec des quantités 1,2 et 3
     for(int i=0; i<3; i++){
-        f.ajouterPlat(m.plat[i]->get_code(), m.plat[i]->get_desc(), m.plat[i]->get_prix(), i+1);
+        f.ajouterPlat(m.plat[i]->get_code(), m.plat[i]->get_desc(), m.plat[i]->get_prix(), 1);
     }
-    
+
     //Affichage de la facture
     f.afficher();
     
@@ -51,8 +53,8 @@ int main(){
     f.afficher();
     
     //Ajouter le plat qui a été retiré avec la quantité 4
-    f.ajouterPlat(m.plat[1]->get_code(), m.plat[1]->get_desc(), m.plat[1]->get_prix(), 4);
-    
+    f.ajouterPlat(m.plat[1]->get_code(), m.plat[1]->get_desc(), m.plat[1]->get_prix(), 1);
+    f.miseAJourPrix();
     //Affichage de la facture
     f.afficher();
     

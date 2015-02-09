@@ -22,7 +22,7 @@ using namespace std;
 
 class Node{
 public:
-	PlatChoisi value;
+	PlatChoisi* value;
 	Node* previous;
 	Node* next;
     void operator=(Node*);
@@ -36,11 +36,11 @@ class Liste
 
 public:
 	Liste();
-	void add(PlatChoisi);
-    void addAt(PlatChoisi, int);
+	void add(PlatChoisi*);
+    void addAt(PlatChoisi*, int);
 	Node* get(int);
     int getAtCode(int);
-	PlatChoisi getAt(int);
+	PlatChoisi* getAt(int);
     void sortByCode();
 	void deleteAt(int);
 	void deleteAll();
