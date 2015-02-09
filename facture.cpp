@@ -19,9 +19,9 @@
 Facture::Facture(){
 	description = "";
 	date = "";
-	plats = "";
+	plats.deleteAll();
 	ouverte = true;
-	payer = false;
+	paid = false;
 	soustotal = 0;
 	tps = 0;
 	tvq = 0;
@@ -34,7 +34,7 @@ void Facture::init(){
 	cin >> date;
 	plats.deleteAll();
 	ouverte = true;
-	payer = false;
+	paid = false;
 	soustotal = 0;
 	tps = 0;
 	tvq = 0;
@@ -42,8 +42,8 @@ void Facture::init(){
 }
 void Facture::miseAJourPrix(){
 	soustotal = 0;
-	for(int i=0; i<plats.size(); i++)
-		soustotal += (plats.get(i).get_prix * plats.get(i).get_quantite());
+	for(int i=0; i<plats.getSize(); i++)
+		soustotal += (plats.get(i)->value.get_prix() * (double)(plats.get(i)->value.get_quantite()));
 	tps = 0.05 * soustotal;
 	tvq = 0.09975 * soustotal;
 	total = 1.14975 * soustotal;
@@ -60,9 +60,9 @@ void Facture::afficher(){
 		<< date << endl
 		<< description << endl;
 
-	for(int i=0; i<plats.size(); i++){
+	for(int i=0; i<plats.getSize(); i++){
 	
-		plats.get(i).afficher();
+		plats.get(i)->value.afficher();
 	
 	}
 	cout << "sous-total " << soustotal << endl
@@ -71,7 +71,7 @@ void Facture::afficher(){
 		<< "-------" << endl
 		<< "total " << total << endl;
 
-	if(payer)
+	if(paid)
 		cout << "Paiement recu " << endl;
 }
 void Facture::modifier(){
@@ -83,8 +83,8 @@ void Facture::fermer(){
 void Facture::reouvrir(){
 	ouverte = true;
 }
-void Facture::payer(){
-	payer = true;
+void Facture::pay(){
+	paid = true;
 }
 
 //-------------------------------------------------------------------------

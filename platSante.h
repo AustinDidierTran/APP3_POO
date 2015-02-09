@@ -4,23 +4,30 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include "plats.h"
 using namespace std;
 
-const bool TRACE_Plats = false;          ///< Activer une trace sur cout (deboguage systematique)
-
-class PlatSante : public PlatAuMenu{ 
+class PlatSante : public PlatAuMenu{
 public:
 /** Methodes et attributs publiques
   Determine un plat au menu (general)
   Permet d'initialiser les attributs et de les exploiter
 */
    PlatSante ();                         ///< Constructeur de base
-   PlatSante  (	int code,
-                string description, 
+   PlatSante  (
+        int code,
+        string description,
 		double prix, 
 		double calories, 
 		double gras, 
 		double cholesterol);         ///< Constructeur avec code, description et prix
+    ~PlatSante();
+    void set_calories(double);
+    void set_gras(double);
+    void set_cholesterol(double);
+    double get_calories() const;
+    double get_gras() const;
+    double get_cholesterol() const;
 
 private:
    double calories, gras, cholesterol;

@@ -15,11 +15,14 @@
 /** \class Facture
   A developper ...
 */
+#include <iostream>
+#include "platChoisi.h"
 
-template <template T>
+using namespace std;
 
 struct Node{
-	T p;
+    
+	PlatChoisi value;
 	Node* previous;
 	Node* next;	
 };
@@ -32,11 +35,13 @@ class Liste
 
 public:
 	Liste();
-	void ajouter(Node);
+	void ajouter(PlatChoisi);
 	Node* get(int);
-	PlatAuMenu* getPlatAt(int);
-	void delete(int);
+	PlatChoisi getAt(int);
+	void deleteAt(int);
 	void deleteAll();
+    int getSize();
+    int findCode(int);
 };
 
 

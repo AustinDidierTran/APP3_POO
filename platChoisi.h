@@ -15,14 +15,18 @@
 /** \class Facture
   A developper ...
 */
+#include "plats.h"
 
 class PlatChoisi : public PlatAuMenu
 {
 	int quantite;
 	public:
+    PlatChoisi(int, string, double, int);
+    ~PlatChoisi();
 	void afficher();
 	int get_quantite();
 	void set_quantite(int);
+    int getCode();
 };
 
 

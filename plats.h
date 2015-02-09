@@ -51,7 +51,7 @@ public:
    int get_code () const ;                   ///< Obtenir le code
    string get_desc () const;                        ///< Obtenir la description
 
-private:
+protected:
    int code; 
    string desc; 
    double prix;

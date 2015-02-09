@@ -10,6 +10,12 @@
 
 #ifndef FACTURE_H
 #define FACTURE_H
+#include <string>
+#include <iostream>
+#include "platChoisi.h"
+#include "liste.h"
+
+using namespace std;
 
 /// Determine une Facture (a developper pour menufact02) ...
 /** \class Facture
@@ -26,17 +32,18 @@ class Facture
 	double tps;
 	double tvq;
 	double total;
-	bool payer;
+	bool paid;
 
 public:
 	Facture();
 	void init();
 	void ajouterPlat(int, string, double, int);
+    void miseAJourPrix();
 	void afficher();
 	void modifier();
 	void fermer();
 	void reouvrir();
-	void payer();	
+	void pay();	
 	
 };
 
