@@ -33,17 +33,20 @@ class Facture
 	double tvq;
 	double total;
 	bool paid;
+    int indicePlatCourant;
 
 public:
 	Facture();
-	void init();
+	void init(string description, string date);
 	void ajouterPlat(int, string, double, int);
     void miseAJourPrix();
 	void afficher();
 	void modifier();
 	void fermer();
 	void reouvrir();
-	void pay();	
+	void pay();
+    void retirerPlatAt(int);
+    bool isOuverte();
 	
 };
 

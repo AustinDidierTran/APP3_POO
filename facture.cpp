@@ -26,12 +26,11 @@ Facture::Facture(){
 	tps = 0;
 	tvq = 0;
 	total = 0;
+    indicePlatCourant = 0;
 }
-void Facture::init(){
-	cout << "Quel est la description?" << endl;
-	cin >> description;
-	cout << "Quel est la date?" << endl;
-	cin >> date;
+void Facture::init(string description, string date){
+    this->description = description;
+    this->date = date;
 	plats.deleteAll();
 	ouverte = true;
 	paid = false;
@@ -39,6 +38,7 @@ void Facture::init(){
 	tps = 0;
 	tvq = 0;
 	total = 0;
+    indicePlatCourant = 0;
 }
 void Facture::miseAJourPrix(){
 	soustotal = 0;
@@ -51,7 +51,7 @@ void Facture::miseAJourPrix(){
 void Facture::ajouterPlat(int code, string description, double prix, int quantite){
 	
 	PlatChoisi plat(code, description, prix, quantite);
-	plats.ajouter(plat);
+	plats.add(plat);
 	miseAJourPrix();
 }
 void Facture::afficher(){
@@ -80,12 +80,20 @@ void Facture::modifier(){
 void Facture::fermer(){
 	ouverte = false;
 }
+bool Facture::isOuverte(){
+    return ouverte;
+}
 void Facture::reouvrir(){
 	ouverte = true;
 }
 void Facture::pay(){
-	paid = true;
+    if(!isOuverte())
+        paid = true;
+    else
+        cout << "La facture doit être fermee pour être payee\n";
 }
-
+void Facture::retirerPlatAt(int indice){
+    plats.deleteAt(indice);
+}
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------

@@ -1,12 +1,19 @@
 #include "liste.h"
 
 
+void Node::operator=(Node* n)
+{
+    value = n->value;
+    next = n->next;
+    previous = n->previous;
+
+}
 Liste::Liste(){
 	size = 0;
     back = NULL;
     head = NULL;
 }
-void Liste::ajouter(PlatChoisi t){
+void Liste::add(PlatChoisi t){
 
     Node* n;
 	n->value = t;
@@ -15,17 +22,36 @@ void Liste::ajouter(PlatChoisi t){
 		head = n;
 		back = n;
 	}
-	else if(size == 1){
-		head = n;
-		back->previous = head;
-		head->next = back;
-	}
 	else{
 		head->previous = n;
 		n->next = head;
 		head = n;
 	}
 	size++;
+    
+    //sortByCode();
+}
+void Liste::addAt(PlatChoisi t, int indice){
+    
+    Node* n;
+    n->value = t;
+    
+    if(indice == 0)
+        add(t);
+    else if(indice == size)
+        back = n;
+    else if(indice > size)
+    {
+        cout << "Indice trop élevé\n";
+    }
+    else
+    {
+        n->previous = get(indice-1);
+        n->next = get(indice);
+        get(indice)->previous = n;
+        get(indice-1)->next = n;
+    }
+    
 }
 int Liste::findCode(int n){
     for(int i=0; i<size; i++)
@@ -44,7 +70,24 @@ Node* Liste::get(int n){
 
 	return currentNode;
 }
-
+int Liste::getAtCode(int n)
+{
+    for(int i=0; i<size; i++)
+    {
+        if(get(i)->value.getCode() == n)
+            return i;
+    }
+    
+    cout << "Code non trouvable";
+    return -1;
+}
+void Liste::sortByCode(){
+    
+    for(int i=0; i<size-1; i++)
+        for(int j=0; j<size; j++)
+            if(get(i)->value.getCode() > get(j)->value.getCode())
+                swap(get(i), get(j));
+}
 PlatChoisi Liste::getAt(int n){
 	Node* currentNode = get(n);
 	return currentNode->value;
@@ -80,3 +123,16 @@ void Liste::deleteAll(){
 int Liste::getSize(){
     return size;
 }
+void Liste::swap(Node* n1, Node* n2){
+    
+    Node* temp;
+    
+    temp = n1;
+    n1 = n2;
+    n2 = temp;
+    
+}
+
+
+
+

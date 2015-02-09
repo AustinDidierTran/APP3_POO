@@ -1,0 +1,72 @@
+//
+//  menufact02.cpp
+//  APP3_POO
+//
+//  Created by Austin-Didier Tran on 2015-02-09.
+//  Copyright (c) 2015 Austin-Didier Tran. All rights reserved.
+//
+
+#include <iostream>
+#include <fstream>
+#include <ctime>
+#include "menu.h"
+#include "facture.h"
+#include "platSante.h"
+
+using namespace std;
+
+int main(){
+    
+    Menu m;
+    ofstream  fichier_sortie;             // fichier de sortie
+    Facture f;
+    string sladate = ladate();
+    
+    PlatSante p1(53, "Salade", 9.99,90, 53, 10), p2(53, "Pomme OGM", 9.00 , 90, 53, 110);
+    PlatAuMenu p3(53, "Pizza à la viande jumbo quatre étage (bar à salade inclus)", 99.99);
+    
+    //Ajout de 3 plats au menu
+    m.ajoute(p1);
+    m.ajoute(p2);
+    m.ajoute(p3);
+    
+    //Affichage du menu
+    m.afficher(fichier_sortie);
+    
+    //initialisation de la facture
+    f.init("Facture test de validation", sladate);
+    
+    //Ajout des trois plats au menu avec des quantités 1,2 et 3
+    for(int i=0; i<3; i++){
+        f.ajouterPlat(m.plat[i]->get_code(), m.plat[i]->get_desc(), m.plat[i]->get_prix(), i+1);
+    }
+    
+    //Affichage de la facture
+    f.afficher();
+    
+    //Retirer le plat du milieu à la facture
+    f.retirerPlatAt(1);
+    
+    //Affichage de la facture
+    f.afficher();
+    
+    //Ajouter le plat qui a été retiré avec la quantité 4
+    f.ajouterPlat(m.plat[1]->get_code(), m.plat[1]->get_desc(), m.plat[1]->get_prix(), 4);
+    
+    //Affichage de la facture
+    f.afficher();
+    
+    //Fermer la facture
+    f.fermer();
+    
+    //Affichage de la facture
+    f.afficher();
+    
+    //Paiement de la facture
+    f.pay();
+    
+    //Affichage de la facture
+    f.afficher();
+    
+    return 0;
+}

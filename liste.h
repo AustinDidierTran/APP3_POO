@@ -20,11 +20,12 @@
 
 using namespace std;
 
-struct Node{
-    
+class Node{
+public:
 	PlatChoisi value;
 	Node* previous;
-	Node* next;	
+	Node* next;
+    void operator=(Node*);
 };
 
 class Liste
@@ -35,13 +36,17 @@ class Liste
 
 public:
 	Liste();
-	void ajouter(PlatChoisi);
+	void add(PlatChoisi);
+    void addAt(PlatChoisi, int);
 	Node* get(int);
+    int getAtCode(int);
 	PlatChoisi getAt(int);
+    void sortByCode();
 	void deleteAt(int);
 	void deleteAll();
     int getSize();
     int findCode(int);
+    void swap(Node*, Node*);
 };
 
 

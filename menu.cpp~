@@ -134,27 +134,7 @@ void Menu::ajoute(PlatAuMenu ajout)              ///< Ajoute un plat au Menu
         cout << "Menu::ajoute - erreur debordement " << endl;
    return;
 }
-void Menu::ajoute(int code, string desc, double prix)              ///< Ajoute un plat au Menu
-{
-    if (TRACE_Menu) cout << "Menu::ajoute, courant = " << courant << endl;
 
-    int i = 0;
-    bool place = false;
-	
-	while ((i < NBRE_PLATS_MAX) && (!place))
-    {
-        if (plat[i]== NULL)
-        {
-            plat[i] = new PlatAuMenu(code, desc, prix);
-            courant = i;
-            place = true;
-        }
-        i++;
-    }
-    if (!place)
-        cout << "Menu::ajoute - erreur debordement " << endl;
-   return;
-}
 void Menu::efface_courant()
 {
     if (TRACE_Menu)
